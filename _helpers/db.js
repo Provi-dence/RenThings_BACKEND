@@ -7,23 +7,33 @@ module.exports = db = {};
 initialize();
 
 async function initialize() {
-    // const { host, port, user, password, database } = config.database;
+    
+    // Destructure the database configuration from config.json
+    const { host, port, user, password, database } = config.database;
 
-    // const connection = await mysql.createConnection({ host, user, password, database });
+     // Ensure that 'database' is defined here
+    if (!database) {
+        throw new Error('Database name is not defined!');
+    }
 
     const connection = await mysql.createConnection({
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
-        ssl: false
       });
       
 
     if (connection) {
         console.log("Connected to MySQL database successfully!");
     } else {
-        console.log("Failed to connect to MySQL database.");
+        connection = await mysql.createConnection({
+            host,
+            port,
+            user,
+            password,
+            database,
+        });
     }
     
     await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
