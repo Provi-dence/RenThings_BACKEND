@@ -7,9 +7,10 @@ module.exports = db = {};
 initialize();
 
 async function initialize() {
-    const { host, port, user, password, database } = config.database;
+    const { host, user, password, database } = process.env;
 
-    const connection = await mysql.createConnection({ host, port, user, password });
+    const connection = await mysql.createConnection({ host, user, password, database });
+    
     await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
 
     const sequelize = new Sequelize(database, user, password, { dialect: 'mysql' });
