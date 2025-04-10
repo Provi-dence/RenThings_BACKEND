@@ -4,7 +4,7 @@
         "port" : 3306,
         "user" : "root",
         "password" : "",
-        "database" : "renThings"
+        "database" : "renthings"
     },
     "secret": "6c32701b-3329-431e-b95f-5604da73e4fc",
     "emailFrom": "RenThings",
