@@ -1,10 +1,10 @@
 {
     "database" : {
-        "host" : "localhost",
+        "host" : "bz8f1xlrcwzqycebrasx-mysql.services.clever-cloud.com",
         "port" : 3306,
-        "user" : "root",
-        "password" : "",
-        "database" : "renthings"
+        "user" : "ugjgcmfjknj3zfxp",
+        "password" : "r77VLQFSZCoeXD91dYgb",
+        "database" : "bz8f1xlrcwzqycebrasx"
     },
     "secret": "6c32701b-3329-431e-b95f-5604da73e4fc",
     "emailFrom": "RenThings",
