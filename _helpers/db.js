@@ -8,33 +8,9 @@ initialize();
 
 async function initialize() {
     
-    // Destructure the database configuration from config.json
-    const { host, port, user, password, database } = config.database;
+     const { host, port, user, password, database } = config.database;
 
-     // Ensure that 'database' is defined here
-    if (!database) {
-        throw new Error('Database name is not defined!');
-    }
-
-    const connection = await mysql.createConnection({
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
-      });
-      
-
-    if (connection) {
-        console.log("Connected to MySQL database successfully!");
-    } else {
-        connection = await mysql.createConnection({
-            host,
-            port,
-            user,
-            password,
-            database,
-        });
-    }
+    const connection = await mysql.createConnection({ host, port, user, password });
     
     await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
 
