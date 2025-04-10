@@ -7,9 +7,24 @@ module.exports = db = {};
 initialize();
 
 async function initialize() {
-    const { host, user, password, database } = process.env;
+    // const { host, port, user, password, database } = config.database;
 
-    const connection = await mysql.createConnection({ host, user, password, database });
+    // const connection = await mysql.createConnection({ host, user, password, database });
+
+    const connection = await mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        ssl: false
+      });
+      
+
+    if (connection) {
+        console.log("Connected to MySQL database successfully!");
+    } else {
+        console.log("Failed to connect to MySQL database.");
+    }
     
     await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
 
